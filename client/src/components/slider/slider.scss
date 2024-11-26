@@ -85,19 +85,22 @@
     flex: 1;
     display: flex;
     flex-direction: column;
-    justify-content: space-between;
+    justify-content: flex-start;
     gap: 20px;
-
+    max-height: 100%; /* Restrict the height of the container */
+    overflow-y: auto; /* Enable vertical scrolling for overflow */
+  
     @include sm {
       flex: 1;
     }
-
+  
     img {
       height: 100px;
-
+  
       @include sm {
         height: 80px;
       }
     }
   }
+  
 }

@@ -75,9 +75,8 @@ export const deleteUser = async (req, res) => {
     res.status(500).json({ message: "Failed to delete users!" });
   }
 };
-
 export const savePost = async (req, res) => {
-  const postId = req.body.postId;
+  const { postId } = req.body;
   const tokenUserId = req.userId;
 
   try {
@@ -91,6 +90,7 @@ export const savePost = async (req, res) => {
     });
 
     if (savedPost) {
+      // Remove saved post
       await prisma.savedPost.delete({
         where: {
           id: savedPost.id,
@@ -98,6 +98,7 @@ export const savePost = async (req, res) => {
       });
       res.status(200).json({ message: "Post removed from saved list" });
     } else {
+      // Save post
       await prisma.savedPost.create({
         data: {
           userId: tokenUserId,
@@ -107,8 +108,8 @@ export const savePost = async (req, res) => {
       res.status(200).json({ message: "Post saved" });
     }
   } catch (err) {
-    console.log(err);
-    res.status(500).json({ message: "Failed to delete users!" });
+    console.error("Error toggling saved post:", err);
+    res.status(500).json({ message: "Failed to toggle saved post!" });
   }
 };
 export const profilePosts = async (req, res) => {

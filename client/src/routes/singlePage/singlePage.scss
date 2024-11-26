@@ -4,6 +4,7 @@
   display: flex;
   height: 100%;
 
+  
   @include md {
     flex-direction: column;
     overflow: scroll;
@@ -28,6 +29,24 @@
       }
       @include md {
         padding-right: 0px;
+      }
+
+      .title{
+          
+        align-items: center;
+        justify-content: space-between;
+
+      
+        button{
+          margin: 20px;
+          padding: 12px 24px 12px 24px;
+          background-color: #fece51;
+          cursor: pointer;
+          border: none;
+        }
+      }
+      H1 {
+        font-weight: 400;
       }
 
       .info {
@@ -83,6 +102,10 @@
             @include sm {
               padding: 20px 50px;
             }
+            
+            
+
+           
 
             img {
               width: 50px;
@@ -92,6 +115,7 @@
             }
           }
         }
+        
         .bottom {
           margin-top: 50px;
           color: #555;

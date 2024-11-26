@@ -1,25 +1,39 @@
-import Chat from "../../components/chat/Chat";
-import List from "../../components/list/List";
+import React, { useContext } from "react";
+import { Link, useLoaderData, useNavigate } from "react-router-dom";
 import "./profilePage.scss";
 import apiRequest from "../../lib/apiRequest";
-import { Await, Link, useLoaderData, useNavigate } from "react-router-dom";
-import { Suspense, useContext } from "react";
 import { AuthContext } from "../../context/AuthContext";
+import List from "../../components/list/List";
+import Chat from "../../components/chat/Chat";
 
 function ProfilePage() {
-  const data = useLoaderData(); // Ensure this contains the response
-  console.log("Loader Data:", data); // Debugging line to check if loader data is available
-
-  const { updateUser, currentUser } = useContext(AuthContext);
+  const { currentUser, updateUser } = useContext(AuthContext);
+  const data = useLoaderData();
   const navigate = useNavigate();
 
   const handleLogout = async () => {
     try {
       await apiRequest.post("/auth/logout");
-      updateUser(null); // Clear user context after logout
-      navigate("/"); // Redirect to home page
+      updateUser(null);
+      navigate("/");
     } catch (err) {
-      console.log(err); // Error handling
+      console.error("Logout failed:", err);
+    }
+  };
+
+  const handleDelete = async (postId) => {
+    console.log("Deleting post:", postId); // Debug
+
+    try {
+      const confirmation = window.confirm("Are you sure you want to delete this post?");
+      if (!confirmation) return;
+
+      await apiRequest.delete(`/posts/${postId}`);
+      alert("Post deleted successfully.");
+      window.location.reload(); // Reload to reflect changes
+    } catch (err) {
+      console.error("Failed to delete post:", err);
+      alert("Error deleting the post. Please try again.");
     }
   };
 
@@ -27,6 +41,7 @@ function ProfilePage() {
     <div className="profilePage">
       <div className="details">
         <div className="wrapper">
+          {/* User Information Section */}
           <div className="title">
             <h1>User Information</h1>
             <Link to="/profile/update">
@@ -47,50 +62,34 @@ function ProfilePage() {
             <button onClick={handleLogout}>Logout</button>
           </div>
 
-          {/* User's Posts List */}
+          {/* User's Posts Section */}
           <div className="title">
             <h1>My List</h1>
             <Link to="/add">
               <button>Create New Post</button>
             </Link>
           </div>
-          <Suspense fallback={<p>Loading...</p>}>
-            <Await
-              resolve={data?.postResponse} // Ensure data contains postResponse
-              errorElement={<p>Error loading posts!</p>}
-            >
-              {(postResponse) => {
-                console.log("Post Response:", postResponse); // Debugging line
-                return (
-                  <List
-                    posts={postResponse?.userPosts || []} // Use proper posts structure
-                  />
-                );
-              }}
-            </Await>
-          </Suspense>
+          <List
+            posts={data?.postResponse?.userPosts || []}
+            currentUser={currentUser}
+            onDelete={handleDelete}
+          />
 
-          {/* Saved Posts List */}
+          {/* Saved Posts Section */}
           <div className="title">
             <h1>Saved List</h1>
           </div>
-          <Suspense fallback={<p>Loading...</p>}>
-            <Await
-              resolve={data?.postResponse} // Again make sure postResponse contains savedPosts
-              errorElement={<p>Error loading saved posts!</p>}
-            >
-              {(postResponse) => (
-                <List posts={postResponse?.savedPosts || []} />
-              )}
-            </Await>
-          </Suspense>
+          <List
+            posts={data?.postResponse?.savedPosts || []}
+            currentUser={currentUser}
+            
+          />
         </div>
       </div>
 
-      {/* Chat Section (if any) */}
+      {/* Chat Section */}
       <div className="chatContainer">
         <div className="wrapper">
-          {/* Include the Chat component here */}
           <Chat />
         </div>
       </div>

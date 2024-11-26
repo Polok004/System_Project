@@ -8,6 +8,7 @@ import Login from "./routes/login/login";
 import Register from "./routes/register/register";
 import ProfileUpdatePage from "./routes/profileUpdatePage/profileUpdatePage";
 import NewPostPage from "./routes/newPostPage/newPostPage";
+import EditPostPage from "./routes/editPost/editPostPage";
 import { listPageLoader, profilePageLoader, singlePageLoader } from "./lib/loaders";
 
 function App() {
@@ -57,6 +58,12 @@ function App() {
           path: "/add",
           element: <NewPostPage />,
         },
+        {
+          path: "/edit/:id",
+          element: <EditPostPage />,
+        },
+        
+        
       ],
     },
   ]);

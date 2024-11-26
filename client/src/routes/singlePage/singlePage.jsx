@@ -27,12 +27,22 @@ function SinglePage() {
     }
   };
 
+  const handleEdit = () => {
+    navigate(`/edit/${post.id}`); // Navigate to the edit page for the post
+  };
+
   return (
     <div className="singlePage">
       <div className="details">
         <div className="wrapper">
           <Slider images={post.images} />
+          <div className="title">
+          <button className="editButton" onClick={handleEdit}>
+                  Edit Post
+           </button>        
+          </div>
           <div className="info">
+            
             <div className="top">
               <div className="post">
                 <h1>{post.title}</h1>
@@ -45,14 +55,20 @@ function SinglePage() {
               <div className="user">
                 <img src={post.user.avatar} alt="" />
                 <span>{post.user.username}</span>
+
+
               </div>
+              
+           
             </div>
+            
             <div
               className="bottom"
               dangerouslySetInnerHTML={{
                 __html: DOMPurify.sanitize(post.postDetail.desc),
-              }}
-            ></div>
+              }}   
+            >
+            </div>
           </div>
         </div>
       </div>
