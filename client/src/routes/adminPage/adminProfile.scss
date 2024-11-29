@@ -1,0 +1,50 @@
+.adminProfile {
+    display: flex;
+    height: 100vh; /* Ensure it takes full height of the viewport */
+    overflow: hidden; /* Prevents outer overflow */
+    
+    .profileContainer {
+      flex: 6;
+      display: flex;
+      flex-direction: column;
+      height: 100%; /* Ensures the container takes the full height */
+      overflow-y: auto; /* Enables scrolling when content overflows */
+    }
+  
+    .dashboard {
+      padding: 20px;
+      display: flex;
+      flex-direction: column;
+      height: 100%; /* Take the full height of the profile container */
+      
+      .widgets {
+        display: flex;
+        gap: 20px;
+        margin-bottom: 20px;
+      }
+  
+      .charts {
+        display: flex;
+        gap: 20px;
+        margin-bottom: 20px;
+        > * {
+          flex: 1;
+        }
+      }
+  
+      .transactions {
+        background-color: #ffffff;
+        padding: 20px;
+        border-radius: 10px;
+        box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+        
+        .transactionTitle {
+          font-size: 18px;
+          font-weight: 600;
+          color: #555;
+          margin-bottom: 15px;
+        }
+      }
+    }
+  }
+  

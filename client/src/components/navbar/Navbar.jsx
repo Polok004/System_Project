@@ -24,17 +24,23 @@ function Navbar() {
         <a href="/">Home</a>
         <a href="/">About</a>
         <a href="/">Contact</a>
-        <a href="/">Agents</a>
+        <a href="/agents">Agents</a>
       </div>
       <div className="right">
-        {currentUser ? (
+      <a href="/be_an_agent"><h4>Be an Agent!</h4></a>
+      {currentUser ? (
           <div className="user">
-            <img src={currentUser.avatar || "/pet.png"} alt="" />
+            <img src={currentUser.avatar || "/default-avatar.png"} alt="Avatar" />
             <span>{currentUser.username}</span>
-            <Link to="/profile" className="profile">
-              
-              <span>Profile</span>
-            </Link>
+            {currentUser.role === "admin" && (
+              <Link to="/adminProfile" className="profile">Admin Profile</Link>
+            )}
+            {currentUser.role === "agent" && (
+              <Link to="/agentProfile" className="profile">Agent Profile</Link>
+            )}
+            {currentUser.role === "user" && (
+              <Link to="/profile" className="profile">Profile</Link>
+            )}
           </div>
         ) : (
           <>

@@ -26,7 +26,15 @@ function ProfileUpdatePage() {
         avatar:avatar[0]
       });
       updateUser(res.data);
-      navigate("/profile");
+      const userRole = res.data.role; // Assuming 'role' is returned in the response data
+
+      if (userRole === 'admin') {
+        navigate("/adminProfile"); // Redirect to admin profile page
+      } else if (userRole === 'agent') {
+        navigate("/agentProfile"); // Redirect to agent profile page
+      } else {
+        navigate("/profile"); // Redirect to user profile page
+      }
     } catch (err) {
       console.log(err);
       setError(err.response.data.message);

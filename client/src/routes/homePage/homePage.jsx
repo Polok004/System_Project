@@ -3,42 +3,91 @@ import "./homePage.scss";
 import { AuthContext } from "../../context/AuthContext";
 import { useContext } from "react";
 
-function HomePage() {
+import { useState, useEffect } from 'react';
+import PropertyCard from "../../components/ListingCard/listingCard";
+import axios from 'axios';
+import apiRequest from "../../lib/apiRequest";
+import Categories from "../../components/categories/categories";
 
-  const {currentUser} = useContext(AuthContext);
-  
+function HomePage() {
+  const { currentUser } = useContext(AuthContext);
+
+  const [posts, setPosts] = useState([]);
+  const [isLoading, setIsLoading] = useState(true);
+
+  useEffect(() => {
+    const fetchPosts = async () => {
+      try {
+        const response = await apiRequest.get('/home/random'); // Correct relative path
+        setPosts(Array.isArray(response.data) ? response.data : []);
+      } catch (error) {
+        console.error('Failed to fetch posts:', error);
+        setPosts([]);
+      } finally {
+        setIsLoading(false);
+      }
+    };
+
+    fetchPosts();
+  }, []);
+
   return (
-    <div className="homePage">
-      <div className="textContainer">
-        <div className="wrapper">
-          <h1 className="title">Find Real Estate & Get Your Dream Place</h1>
-          <p>
-            Lorem ipsum dolor sit amet consectetur adipisicing elit. Eos
-            explicabo suscipit cum eius, iure est nulla animi consequatur
-            facilis id pariatur fugit quos laudantium temporibus dolor ea
-            repellat provident impedit!
-          </p>
-          <SearchBar />
-          <div className="boxes">
-            <div className="box">
-              <h1>16+</h1>
-              <h2>Years of Experience</h2>
-            </div>
-            <div className="box">
-              <h1>200</h1>
-              <h2>Award Gained</h2>
-            </div>
-            <div className="box">
-              <h1>2000+</h1>
-              <h2>Property Ready</h2>
+    <>
+    <section className="home">
+      <div className="homePage">
+        <div className="textContainer">
+          <div className="wrapper">
+            <h1 className="title">Find Real Estate & Get Your Dream Place</h1>
+            <p>
+              Explore a wide variety of properties, connect with real estate
+              agents, and discover your next dream home!
+            </p>
+            <SearchBar />
+            <div className="boxes">
+              <div className="box">
+                <h1>16+</h1>
+                <h2>Years of Experience</h2>
+              </div>
+              <div className="box">
+                <h1>200</h1>
+                <h2>Awards Gained</h2>
+              </div>
+              <div className="box">
+                <h1>2000+</h1>
+                <h2>Properties Ready</h2>
+              </div>
             </div>
           </div>
         </div>
+        <div className="imgContainer">
+          <img src="/bg.png" alt="Real estate background" />
+        </div>
       </div>
-      <div className="imgContainer">
-        <img src="/bg.png" alt="" />
-      </div>
+
+      </section>
+
+
+      <section className="propertyList">
+      <div className="propertiesSection">
+    <h2>Explore Properties</h2>
+    <div className="propertiesGrid">
+      {isLoading ? (
+        <p>Loading properties...</p>
+      ) : posts.length > 0 ? (
+        posts.map((post) => <PropertyCard key={post.id} post={post} />)
+      ) : (
+        <p>No properties found.</p>
+      )}
     </div>
+  </div>
+</section>
+
+    <section className="categories">
+
+           <Categories />
+
+    </section>
+    </>
   );
 }
 

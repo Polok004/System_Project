@@ -3,13 +3,17 @@ import bcrypt from "bcrypt";
 
 export const getUsers = async (req, res) => {
   try {
-    const users = await prisma.user.findMany();
-    res.status(200).json(users);
+    // Fetch only users with the role 'agent'
+    const agents = await prisma.user.findMany({
+      where: { role: "agent" },  // Filter by 'agent' role
+    });
+    res.status(200).json(agents);
   } catch (err) {
     console.log(err);
-    res.status(500).json({ message: "Failed to get users!" });
+    res.status(500).json({ message: "Failed to get agents!" });
   }
 };
+
 
 export const getUser = async (req, res) => {
   const id = req.params.id;

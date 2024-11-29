@@ -4,10 +4,12 @@ import jwt from "jsonwebtoken";
 // Get all posts based on query parameters
 export const getPosts = async (req, res) => {
   const query = req.query;
+  const tokenUserId = req.userId; // Ensure this comes from verifyToken middleware
 
   try {
     const posts = await prisma.post.findMany({
       where: {
+        userId: tokenUserId, // Fetch posts created by the logged-in user (agent)
         city: query.city || undefined,
         type: query.type || undefined,
         property: query.property || undefined,
@@ -25,6 +27,7 @@ export const getPosts = async (req, res) => {
     res.status(500).json({ message: "Failed to get posts" });
   }
 };
+
 
 // Get a specific post by ID
 export const getPost = async (req, res) => {

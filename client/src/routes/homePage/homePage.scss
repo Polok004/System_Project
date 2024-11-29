@@ -1,4 +1,7 @@
 @import "../../responsive.scss";
+.home{
+ padding: 20px;
+ margin: 20px;
 
 .homePage {
   display: flex;
@@ -80,4 +83,80 @@
       }
     }
   }
+
+  .propertyList {
+    padding: 60px 20px; // Uniform padding
+    background-color: #a19889; // Subtle background color
+    margin: 0 auto;
+    margin-top: 40px;
+
+  
+    .propertiesSection {
+      max-width: 1200px; // Center the content
+      margin: 0 auto;
+      text-align: center;
+      background-color: #a19889;
+  
+      h2 {
+        font-size: 36px;
+        font-weight: bold;
+        color: #2d3748;
+        margin-bottom: 40px;
+      }
+  
+      .propertiesGrid {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+        gap: 30px;
+        padding: 20px;
+  
+        // Add aesthetic spacing and alignment
+        p {
+          font-size: 18px;
+          color: #718096;
+          margin: 20px 0;
+        }
+  
+        // Add hover effect for property cards
+        .propertyCard {
+          transition: transform 0.3s ease, box-shadow 0.3s ease;
+  
+          &:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
+          }
+        }
+      }
+    }
+  }
+  
+  // Add media queries for better responsiveness
+  @media (max-width: 768px) {
+    .propertyList {
+      padding: 40px 20px;
+      margin: 40px;
+      .propertiesSection {
+        padding: 40px 20px;
+         margin: 40px;
+        h2 {
+          font-size: 28px; // Adjust title size for smaller screens
+        }
+      }
+    }
+  }
+  
+  @media (max-width: 480px) {
+    .propertyList {
+      padding: 40px 20px;
+      margin: 40px;
+      .propertiesSection {
+        padding: 40px 20px;
+      margin: 40px;
+        .propertiesGrid {
+          gap: 15px; // Reduce gap for smaller devices
+        }
+      }
+    }
+  }
+}  
 }
