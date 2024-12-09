@@ -1,19 +1,23 @@
-// AgentCard.js
 import React from "react";
+import { Link } from "react-router-dom";
 import "./agentCard.scss";
 
 const AgentCard = ({ agent }) => {
   return (
     <div className="agentCard">
-      <img src={agent.avatar} alt="Agent Avatar" className="avatar" />
-      <div className="agentInfo">
-        <span className="agentName">{agent.username}</span>
-        <span className="agentEmail">{agent.email}</span>
-        <span className="agentExperience">{agent.experience} years of experience</span>
-      </div>
-      <div className="icon">
-        <img src="/chat.png" alt="Chat" />
-      </div>
+      <Link to={`/agents/${agent.id}`} className="agentLink">
+        <div className="avatar-container">
+          <img
+            src={agent.avatar || "/default-avatar.png"}
+            alt={`${agent.username}'s avatar`}
+            className="agent-avatar"
+          />
+        </div>
+        <div className="agent-details">
+          <h3 className="agent-name">{agent.username}</h3>
+          <p className="agent-email">{agent.email}</p>
+        </div>
+      </Link>
     </div>
   );
 };

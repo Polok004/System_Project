@@ -1,5 +1,5 @@
 import express from 'express';
-import { getRandomPosts } from '../controllers/home.controller.js';
+import { getRandomPosts,getRandomAgents } from '../controllers/home.controller.js';
 
 const router = express.Router();
 
@@ -8,5 +8,6 @@ const router = express.Router();
  * @desc    Get random posts (limit 9)
  */
 router.get('/random', getRandomPosts);
+router.get('/randomAgents', getRandomAgents);
 
 export default router;

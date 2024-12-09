@@ -16,6 +16,7 @@ import { listPageLoader, profilePageLoader, singlePageLoader } from "./lib/loade
 import AgentList from "./routes/agentList/agentList";
 import AgentPage from "./routes/agent/agentPage";
 import NotificationsPage from "./routes/adminNotification/notificationPage";
+import AgentHome from "./routes/agentHome/agentHome";
 
 function App() {
   const router = createBrowserRouter([
@@ -48,6 +49,10 @@ function App() {
         {
           path: "/agents",
           element: <AgentList />,
+        },
+        {
+          path: "/agents/:id",
+          element: <AgentHome />,
         },
         
       ],

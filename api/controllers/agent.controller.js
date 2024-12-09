@@ -105,3 +105,42 @@ export const submitAgentApplication = async (req, res) => {
     }
   };
   
+
+  export const getAgentProfile = async (req, res) => {
+    try {
+      const agent = await prisma.agent.findUnique({
+        where: { userId: req.params.id },
+        include: {
+          user: {
+            select: {
+              username: true,
+              email: true,
+              avatar: true,
+              posts: {
+                select: {
+                  id: true,
+                  title: true,
+                  price: true,
+                  images: true,
+                  address: true,
+                  city: true,
+                  bedroom: true,
+                  bathroom: true,
+                },
+              },
+            },
+          },
+        },
+      });
+  
+      if (!agent) {
+        return res.status(404).json({ message: "Agent not found" });
+      }
+  
+      res.status(200).json(agent);
+    } catch (error) {
+      console.error("Error fetching agent profile:", error);
+      res.status(500).json({ message: "Internal server error" });
+    }
+  };
+  
