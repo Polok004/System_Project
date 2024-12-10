@@ -4,6 +4,7 @@ import { useContext, useState, useEffect } from "react";
 import SearchBar from "../../components/searchBar/SearchBar";
 import PropertyCard from "../../components/ListingCard/listingCard";
 import HomeAgent from "../../components/homeAgent/homeAgent";
+import BlogCard from "../../components/blogCard/blogCard";
 import axios from "axios";
 import apiRequest from "../../lib/apiRequest";
 
@@ -12,6 +13,7 @@ function HomePage() {
 
   const [posts, setPosts] = useState([]);
   const [agents, setAgents] = useState([]);
+  const [blogs, setBlogs] = useState([]);
   const [isLoading, setIsLoading] = useState(true);
 
   useEffect(() => {
@@ -37,8 +39,21 @@ function HomePage() {
       }
     };
 
+    const fetchLatestBlogs = async () => {
+      try {
+        const response = await apiRequest.get("/home/latestBlog"); // Correct relative path to the blog API
+        setBlogs(Array.isArray(response.data) ? response.data : []); // Safeguard against unexpected responses
+      } catch (error) {
+        console.error("Failed to fetch blogs:", error);
+        setBlogs([]); // Handle errors by setting an empty array
+      }
+    };
+    
+  
+      
     fetchPosts();
     fetchAgents();
+    fetchLatestBlogs();
   }, []);
 
   return (
@@ -104,6 +119,24 @@ function HomePage() {
 </div>
         </div>
       </section>
+
+
+
+      <section className="blogList">
+      <div className="blogsSection">
+        <h2>Latest Blogs</h2>
+        <div className="blogsGrid">
+          {isLoading ? (
+            <p>Loading blogs...</p>
+          ) : blogs.length > 0 ? (
+            blogs.map((blog) => <BlogCard key={blog.id} blog={blog} />)
+          ) : (
+            <p>No blogs found.</p>
+          )}
+        </div>
+      </div>
+    </section>
+
     </>
   );
 }

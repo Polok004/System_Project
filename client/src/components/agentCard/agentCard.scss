@@ -55,3 +55,31 @@
     }
   }
 }
+
+// .agentsSection {
+//   margin-top: 50px;
+//   padding: 40px 20px;
+
+//   h2 {
+//     font-size: 32px;
+//     font-weight: 700;
+//     color: #2d3748;
+//     text-align: center;
+//     margin-bottom: 30px;
+//   }
+
+//   .agentsGrid {
+//     display: grid;
+//     grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+//     gap: 20px;
+//     justify-items: center;
+
+//     @media (max-width: 768px) {
+//       grid-template-columns: repeat(2, 1fr);
+//     }
+
+//     @media (max-width: 480px) {
+//       grid-template-columns: 1fr;
+//     }
+//   }
+// }

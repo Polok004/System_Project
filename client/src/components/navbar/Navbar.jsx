@@ -25,6 +25,7 @@ function Navbar() {
         <a href="/">About</a>
         <a href="/">Contact</a>
         <a href="/agents">Agents</a>
+        <a href="/blog">Blog</a>
       </div>
       <div className="right">
       <a href="/be_an_agent"><h4>Be an Agent!</h4></a>

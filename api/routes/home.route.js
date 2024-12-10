@@ -1,5 +1,5 @@
 import express from 'express';
-import { getRandomPosts,getRandomAgents } from '../controllers/home.controller.js';
+import { getRandomPosts,getRandomAgents,getLatestBlogs } from '../controllers/home.controller.js';
 
 const router = express.Router();
 
@@ -9,5 +9,6 @@ const router = express.Router();
  */
 router.get('/random', getRandomPosts);
 router.get('/randomAgents', getRandomAgents);
+router.get('/latestBlog', getLatestBlogs)
 
 export default router;

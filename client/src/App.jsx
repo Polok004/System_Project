@@ -17,6 +17,7 @@ import AgentList from "./routes/agentList/agentList";
 import AgentPage from "./routes/agent/agentPage";
 import NotificationsPage from "./routes/adminNotification/notificationPage";
 import AgentHome from "./routes/agentHome/agentHome";
+import BlogPage from "./routes/Blog/blog";
 
 function App() {
   const router = createBrowserRouter([
@@ -95,6 +96,10 @@ function App() {
         {
           path: "/be_an_agent",
           element: <AgentPage />,
+        },
+        {
+          path: "/blog",
+          element: <BlogPage />,
         }
       ],
     },

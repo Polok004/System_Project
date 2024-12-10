@@ -26,6 +26,7 @@ model User {
   chats      Chat[]      @relation(fields: [chatIDs], references: [id])
   chatIDs    String[]    @db.ObjectId
   agentInfo  Agent?      @relation("agent")
+  blogs      Blog[]      @relation("UserBlogs")
 }
 
 enum Role {
@@ -133,4 +134,15 @@ model Message {
   chat      Chat     @relation(fields: [chatId], references: [id])
   chatId    String   @db.ObjectId
   createdAt DateTime @default(now())
+}
+
+model Blog {
+  id        String   @id @default(auto()) @map("_id") @db.ObjectId
+  title     String
+  content   String
+  images    String[] @default([])
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+  author    User     @relation("UserBlogs", fields: [authorId], references: [id]) // Add relation name here
+  authorId  String   @db.ObjectId
 }
