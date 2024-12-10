@@ -44,3 +44,27 @@ export const getRandomPosts = async (req, res) => {
   };
 
 
+  export const getLatestBlogs = async (req, res) => {
+    try {
+      const blogs = await prisma.blog.findMany({
+        orderBy: {
+          createdAt: 'desc', // Sort by createdAt in descending order
+        },
+        take: 4, // Limit to the latest 4 blogs
+        include: {
+          author: { // Include author details
+            select: {
+              username: true,
+              avatar: true,
+            },
+          },
+        },
+      });
+  
+      res.status(200).json(blogs);
+    } catch (error) {
+      console.error("Error fetching latest blogs:", error);
+      res.status(500).json({ message: "Failed to fetch latest blogs" });
+    }
+  };
+  

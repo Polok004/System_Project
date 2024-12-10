@@ -1,0 +1,119 @@
+/* blog.scss */
+.blog-form-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+  background: linear-gradient(135deg, #f3f4f6, #e2e8f0);
+}
+
+.blog-form {
+  background-color: #ffffff;
+  width: 100%;
+  max-width: 480px;
+  padding: 2rem;
+  border-radius: 15px;
+  box-shadow: 0px 10px 20px rgba(0, 0, 0, 0.1);
+  text-align: center;
+}
+
+.form-title {
+  font-size: 2rem;
+  font-weight: bold;
+  color: #333;
+  margin-bottom: 1.5rem;
+}
+
+.input-group {
+  display: flex;
+  flex-direction: column;
+  text-align: left;
+  margin-bottom: 1.25rem;
+}
+
+.input-group label {
+  font-weight: 600;
+  margin-bottom: 0.5rem;
+  color: #4b5563;
+}
+
+.input-group input[type="text"],
+.input-group textarea {
+  width: 100%;
+  padding: 0.75rem 1rem;
+  font-size: 1rem;
+  color: #333;
+  border: 1px solid #e5e7eb;
+  border-radius: 8px;
+  background-color: #f9fafb;
+  transition: all 0.2s ease;
+}
+
+.input-group input[type="text"]:focus,
+.input-group textarea:focus {
+  outline: none;
+  border-color: #6366f1;
+  background-color: #ffffff;
+  box-shadow: 0px 4px 10px rgba(99, 102, 241, 0.2);
+}
+
+.input-group textarea {
+  height: 150px;
+  resize: none;
+}
+
+.submit-button {
+  width: 100%;
+  padding: 0.75rem 0;
+  font-size: 1rem;
+  font-weight: bold;
+  background-color: #6366f1;
+  color: #ffffff;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.submit-button:hover {
+  background-color: #4f46e5;
+  box-shadow: 0px 8px 15px rgba(99, 102, 241, 0.3);
+}
+
+.submit-button:disabled {
+  background-color: #a5b4fc;
+  cursor: not-allowed;
+}
+
+.error-message {
+  background-color: #fee2e2;
+  color: #b91c1c;
+  padding: 0.75rem;
+  border-radius: 8px;
+  margin-bottom: 1rem;
+  font-weight: bold;
+  text-align: center;
+}
+
+/* ✅ New Success Message */
+.success-message {
+  background-color: #d1fae5;
+  color: #065f46;
+  padding: 0.75rem;
+  border-radius: 8px;
+  margin-bottom: 1rem;
+  font-weight: bold;
+  text-align: center;
+  animation: fadeIn 0.5s ease-out forwards;
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(-10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}

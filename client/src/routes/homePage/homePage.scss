@@ -107,9 +107,9 @@
       .propertiesGrid {
         display: grid;
         grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-        gap: 30px;
+        gap: 80px;
         padding: 20px;
-  
+        margin: 40px;
         // Add aesthetic spacing and alignment
         p {
           font-size: 18px;
@@ -120,6 +120,7 @@
         // Add hover effect for property cards
         .propertyCard {
           transition: transform 0.3s ease, box-shadow 0.3s ease;
+          margin: 40px;
   
           &:hover {
             transform: translateY(-5px);
@@ -191,6 +192,55 @@
     }
   }
   
+
+  .blogList {
+    padding: 60px 20px; // Uniform padding
+    background-color: #a19889; // Subtle background color
+    margin: 0 auto;
+    margin-top: 40px;
+
+  
+    .blogsSection {
+      max-width: 1200px; // Center the content
+      margin: 0 auto;
+      text-align: center;
+      background-color: #a19889;
+  
+      h2 {
+        font-size: 36px;
+        font-weight: bold;
+        color: #2d3748;
+        margin-bottom: 40px;
+      }
+  
+      .blogsGrid {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+        gap: 80px;
+        padding: 20px;
+        margin: 40px;
+        // Add aesthetic spacing and alignment
+        p {
+          font-size: 18px;
+          color: #718096;
+          margin: 20px 0;
+        }
+  
+        // Add hover effect for property cards
+        .blogCard {
+          transition: transform 0.3s ease, box-shadow 0.3s ease;
+          margin: 40px;
+  
+          &:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
+          }
+        }
+      }
+    }
+  }
+  
+      
   // Add media queries for better responsiveness
   @media (max-width: 768px) {
     .propertyList {
@@ -221,6 +271,7 @@
   }
 
   
-  
-}  
+ }  
+
+
 }

@@ -6,6 +6,7 @@ import userRoute from "./routes/user.route.js";
 import postRoute from "./routes/post.route.js";
 import agentRoute from "./routes/agent.route.js";
 import homeRoute from "./routes/home.route.js";
+import blogRoute from "./routes/blog.route.js";
 
 
 const app = express();
@@ -23,6 +24,8 @@ app.use("/api/users", userRoute);
 app.use("/api/posts", postRoute);
 app.use("/api/agents", agentRoute);
 app.use("/api/home", homeRoute);
+app.use("/api/blogs", blogRoute);
+
 
 app.listen(8800, () => {
     console.log("Server is running!");
