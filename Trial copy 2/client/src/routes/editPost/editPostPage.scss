@@ -1,0 +1,256 @@
+.editPostPage {
+  height: 100%;
+  display: flex;
+  gap: 20px;
+
+  .formContainer {
+    flex: 3;
+    overflow-y: auto;
+    padding: 20px;
+    background-color: #f9f9f9; // Subtle background color
+    border-radius: 10px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+
+    .wrapper {
+      margin: 30px 20px 50px 0px;
+
+      form {
+        display: flex;
+        justify-content: space-between;
+        flex-wrap: wrap;
+        gap: 20px;
+
+        .item {
+          width: 30%;
+          display: flex;
+          flex-direction: column;
+          gap: 5px;
+
+          input,
+          select {
+            padding: 15px;
+            border-radius: 5px;
+            border: 1px solid #ccc;
+            font-size: 14px;
+            transition: border-color 0.3s ease;
+
+            &:focus {
+              border-color: #0072ff; // Highlight on focus
+              outline: none;
+              box-shadow: 0 0 5px rgba(0, 114, 255, 0.2);
+            }
+          }
+
+          &.description {
+            width: 100%;
+            height: 320px;
+
+            .quill > .ql-container > .ql-editor {
+              height: 200px;
+              font-size: 16px;
+            }
+          }
+        }
+
+        .sendButton {
+          width: 30%;
+          padding: 15px;
+          border-radius: 5px;
+          border: none;
+          background: linear-gradient(90deg, #00c6ff, #0072ff); // Gradient background
+          color: white;
+          font-weight: bold;
+          font-size: 16px;
+          text-transform: uppercase;
+          cursor: pointer;
+          transition: all 0.3s ease;
+
+          &:hover {
+            background: linear-gradient(90deg, #0072ff, #00c6ff); // Reverse gradient
+            transform: scale(1.05); // Slight zoom-in effect
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2); // Subtle shadow
+          }
+
+          &:active {
+            transform: scale(0.98); // Slight shrink on click
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1); // Reduced shadow
+          }
+        }
+
+        .addTransactionButton {
+          width: 30%;
+          padding: 15px;
+          border-radius: 5px;
+          border: none;
+          background: linear-gradient(90deg, #ff8a00, #ff3d00); // Warm gradient
+          color: white;
+          font-weight: bold;
+          font-size: 16px;
+          text-transform: uppercase;
+          cursor: pointer;
+          transition: all 0.3s ease;
+
+          &:hover {
+            background: linear-gradient(90deg, #ff3d00, #ff8a00); // Reverse gradient
+            transform: scale(1.05); // Slight zoom-in effect
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2); // Subtle shadow
+          }
+
+          &:active {
+            transform: scale(0.98); // Slight shrink on click
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1); // Reduced shadow
+          }
+        }
+      }
+    }
+  }
+
+  .sideContainer {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    max-height: 100%; // Restrict height
+    overflow-y: auto; // Enable vertical scrolling
+    padding: 10px;
+    background-color: #fff;
+    border-radius: 10px;
+    box-shadow: inset 0 0 5px rgba(0, 0, 0, 0.1);
+
+    .imageWrapper {
+      position: relative;
+      width: 100%;
+      max-width: 200px; // Limit image size
+
+      img {
+        width: 100%;
+        height: auto; // Maintain aspect ratio
+        object-fit: cover; // Adjust how the image fits
+        border-radius: 5px;
+      }
+
+      .deleteButton {
+        position: absolute;
+        top: 5px;
+        right: 5px;
+        background: red;
+        color: white;
+        border: none;
+        padding: 5px;
+        cursor: pointer;
+        border-radius: 3px;
+        font-size: 12px;
+
+        &:hover {
+          background: darkred;
+        }
+      }
+    }
+  }
+
+  .popup {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.5); // Semi-transparent backdrop
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 1000;
+
+    .popupContent {
+      background: white;
+      border-radius: 10px;
+      padding: 30px;
+      width: 90%;
+      max-width: 600px;
+      box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+      animation: fadeIn 0.3s ease;
+
+      h2 {
+        margin-bottom: 20px;
+        font-size: 24px;
+        color: #333;
+      }
+
+      form {
+        display: flex;
+        flex-direction: column;
+        gap: 15px;
+
+        .item {
+          display: flex;
+          flex-direction: column;
+          gap: 5px;
+
+          label {
+            font-weight: bold;
+            color: #555;
+          }
+
+          input {
+            padding: 15px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            transition: border-color 0.3s ease;
+
+            &:focus {
+              border-color: #0072ff;
+              outline: none;
+              box-shadow: 0 0 5px rgba(0, 114, 255, 0.2);
+            }
+          }
+        }
+
+        .buttonGroup {
+          display: flex;
+          justify-content: space-between;
+          gap: 10px;
+
+          .sendButton {
+            flex: 1;
+            padding: 10px;
+            border-radius: 5px;
+            background: linear-gradient(90deg, #00c6ff, #0072ff);
+            color: white;
+            font-weight: bold;
+            cursor: pointer;
+            transition: all 0.3s ease;
+
+            &:hover {
+              background: linear-gradient(90deg, #0072ff, #00c6ff);
+            }
+          }
+
+          .cancelButton {
+            flex: 1;
+            padding: 10px;
+            border-radius: 5px;
+            background: gray;
+            color: white;
+            font-weight: bold;
+            cursor: pointer;
+            transition: all 0.3s ease;
+
+            &:hover {
+              background: darkgray;
+            }
+          }
+        }
+      }
+    }
+  }
+
+  @keyframes fadeIn {
+    from {
+      opacity: 0;
+      transform: scale(0.95);
+    }
+    to {
+      opacity: 1;
+      transform: scale(1);
+    }
+  }
+}

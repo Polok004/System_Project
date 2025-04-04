@@ -1,0 +1,315 @@
+@import "../../responsive.scss";
+.home{
+ padding: 20px;
+ margin: 20px;
+
+.homePage {
+  display: flex;
+  height: 100%;
+
+  .textContainer {
+    flex: 3;
+
+    .wrapper {
+      padding-right: 100px;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      gap: 50px;
+      height: 100%;
+
+      @include lg{
+        padding-right: 50px;
+      }
+
+      @include md{
+        padding: 0;
+      }
+
+      @include sm{
+        justify-content: flex-start;
+      }
+
+      .title {
+        font-size: 64px;
+
+        @include lg {
+          font-size: 48px;
+        }
+      }
+
+      .boxes {
+        display: flex;
+        justify-content: space-between;
+
+        @include sm {
+          display: none;
+        }
+
+        h1 {
+          font-size: 36px;
+
+          @include lg {
+            font-size: 32px;
+          }
+        }
+
+        h2 {
+          font-size: 20px;
+          font-weight: 300;
+        }
+      }
+    }
+  }
+
+  .imgContainer {
+    flex: 2;
+    background-color: #fcf5f3;
+    position: relative;
+    display: flex;
+    align-items: center;
+
+    @include md {
+      display: none;
+    }
+
+    img {
+      width: 115%;
+      position: absolute;
+      right: 0;
+
+      @include lg {
+        width: 105%;
+      }
+    }
+  }
+
+  .propertyList {
+    padding: 60px 20px; // Uniform padding
+    background-color: #a19889; // Subtle background color
+    margin: 0 auto;
+    margin-top: 40px;
+
+  
+    .propertiesSection {
+      max-width: 1200px; // Center the content
+      margin: 0 auto;
+      text-align: center;
+      background-color: #a19889;
+  
+      h2 {
+        font-size: 36px;
+        font-weight: bold;
+        color: #2d3748;
+        margin-bottom: 40px;
+      }
+  
+      .propertiesGrid {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+        gap: 80px;
+        padding: 20px;
+        margin: 40px;
+        // Add aesthetic spacing and alignment
+        p {
+          font-size: 18px;
+          color: #718096;
+          margin: 20px 0;
+        }
+  
+        // Add hover effect for property cards
+        .propertyCard {
+          transition: transform 0.3s ease, box-shadow 0.3s ease;
+          margin: 40px;
+  
+          &:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
+          }
+        }
+      }
+    }
+  }
+
+  .agentsList {
+    padding: 60px 20px;
+    background-color: #f8f9fa;
+
+    .agentsSection {
+      max-width: 1400px;
+      margin: 0 auto;
+
+      h2 {
+        text-align: center;
+        margin-bottom: 40px;
+        font-size: 2.5rem;
+        color: #333;
+      }
+
+      .agents-swiper {
+        padding: 20px 40px;
+
+        .swiper-button-next,
+        .swiper-button-prev {
+          color: #333;
+          background: rgba(255, 255, 255, 0.8);
+          width: 40px;
+          height: 40px;
+          border-radius: 50%;
+          
+          &:after {
+            font-size: 20px;
+          }
+
+          &:hover {
+            background: white;
+          }
+        }
+
+        .swiper-pagination-bullet {
+          background: #333;
+          opacity: 0.5;
+
+          &-active {
+            opacity: 1;
+            background: #007bff;
+          }
+        }
+      }
+    }
+  }
+  
+
+  .blogList {
+    padding: 60px 20px; // Uniform padding
+    background-color: #a19889; // Subtle background color
+    margin: 0 auto;
+    margin-top: 40px;
+
+  
+    .blogsSection {
+      max-width: 1200px; // Center the content
+      margin: 0 auto;
+      text-align: center;
+      background-color: #a19889;
+  
+      h2 {
+        font-size: 36px;
+        font-weight: bold;
+        color: #2d3748;
+        margin-bottom: 40px;
+      }
+  
+      .blogsGrid {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+        gap: 80px;
+        padding: 20px;
+        margin: 40px;
+        // Add aesthetic spacing and alignment
+        p {
+          font-size: 18px;
+          color: #718096;
+          margin: 20px 0;
+        }
+  
+        // Add hover effect for property cards
+        .blogCard {
+          transition: transform 0.3s ease, box-shadow 0.3s ease;
+          margin: 40px;
+  
+          &:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
+          }
+        }
+      }
+    }
+  }
+  
+      
+  // Add media queries for better responsiveness
+  @media (max-width: 768px) {
+    .propertyList {
+      padding: 40px 20px;
+      margin: 40px;
+      .propertiesSection {
+        padding: 40px 20px;
+         margin: 40px;
+        h2 {
+          font-size: 28px; // Adjust title size for smaller screens
+        }
+      }
+    }
+  }
+  
+  @media (max-width: 480px) {
+    .propertyList {
+      padding: 40px 20px;
+      margin: 40px;
+      .propertiesSection {
+        padding: 40px 20px;
+      margin: 40px;
+        .propertiesGrid {
+          gap: 15px; // Reduce gap for smaller devices
+        }
+      }
+    }
+  }
+
+  
+ }  
+
+.agentsSection, .blogsSection {
+  padding: 40px 0;
+  
+  .swiper {
+    padding: 20px 10px;
+    
+    .swiper-button-next,
+    .swiper-button-prev {
+      color: #333;
+      
+      &:after {
+        font-size: 24px;
+      }
+    }
+    
+    .swiper-pagination-bullet {
+      background: #333;
+      
+      &-active {
+        background: #007bff;
+      }
+    }
+  }
+}
+
+// Specific adjustments for blog cards in slider
+.blogsSection .swiper-slide {
+  height: auto; // Ensure slides adjust to content height
+}
+
+// Specific adjustments for agent cards in slider
+.agentsSection .swiper-slide {
+  display: flex;
+  justify-content: center;
+}
+
+.be-agent-btn {
+  display: inline-block;
+  padding: 12px 24px;
+  background: linear-gradient(135deg, #ce3931 0%, #e65d55 100%);
+  color: white;
+  text-decoration: none;
+  border-radius: 8px;
+  font-weight: 600;
+  transition: all 0.3s ease;
+  box-shadow: 0 4px 12px rgba(206, 57, 49, 0.2);
+
+  &:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 6px 15px rgba(206, 57, 49, 0.3);
+  }
+}
+}

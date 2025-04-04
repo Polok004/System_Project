@@ -1,0 +1,58 @@
+.agentPage {
+  min-height: 100vh;
+  padding: 60px 20px;
+  background: linear-gradient(135deg, #f8fafc 0%, #f1f5f9 100%);
+
+  .pageTitle {
+    font-size: 2.5rem;
+    color: #1a202c;
+    text-align: center;
+    margin-bottom: 50px;
+    position: relative;
+
+    &::after {
+      content: '';
+      position: absolute;
+      bottom: -15px;
+      left: 50%;
+      transform: translateX(-50%);
+      width: 80px;
+      height: 4px;
+      background: #ce3931;
+      border-radius: 2px;
+    }
+  }
+
+  .agentList {
+    max-width: 1400px;
+    margin: 0 auto;
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+    gap: 30px;
+    padding: 20px;
+
+    @media (max-width: 768px) {
+      grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+    }
+  }
+
+  .loadingMessage, .errorMessage {
+    text-align: center;
+    padding: 20px;
+    font-size: 1.2rem;
+    border-radius: 12px;
+    margin: 20px auto;
+    max-width: 400px;
+  }
+
+  .loadingMessage {
+    background: #f7fafc;
+    color: #4a5568;
+  }
+
+  .errorMessage {
+    background: #fff5f5;
+    color: #e53e3e;
+  }
+}
+

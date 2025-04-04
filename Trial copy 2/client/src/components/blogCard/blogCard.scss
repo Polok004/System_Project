@@ -1,0 +1,215 @@
+.blogCard {
+  width: 100%;
+  max-width: 380px;
+  min-height: 480px;
+  border-radius: 20px;
+  overflow: hidden;
+  background-color: #fff;
+  box-shadow: 0 8px 25px rgba(0, 0, 0, 0.1);
+  display: flex;
+  flex-direction: column;
+  transition: all 0.4s cubic-bezier(0.165, 0.84, 0.44, 1);
+  position: relative;
+
+  &:hover {
+    transform: translateY(-8px);
+    box-shadow: 0 15px 35px rgba(0, 0, 0, 0.15);
+
+    .blogImage {
+      img {
+        transform: scale(1.08);
+      }
+
+      &::after {
+        opacity: 0.3;
+      }
+    }
+
+    .blogTitle {
+      color: #ce3931;
+    }
+  }
+
+  .blogImage {
+    height: 240px;
+    position: relative;
+    overflow: hidden;
+
+    &::after {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      background: linear-gradient(to bottom, rgba(0,0,0,0) 0%, rgba(0,0,0,0.6) 100%);
+      opacity: 0.4;
+      transition: opacity 0.3s ease;
+    }
+
+    img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      transition: transform 0.5s ease;
+    }
+
+    .blogCategory {
+      position: absolute;
+      top: 20px;
+      left: 20px;
+      z-index: 1;
+      background: rgba(206, 57, 49, 0.9);
+      color: white;
+      padding: 8px 16px;
+      border-radius: 25px;
+      font-size: 13px;
+      font-weight: 600;
+      letter-spacing: 0.5px;
+      box-shadow: 0 2px 8px rgba(0, 0, 0, 0.15);
+    }
+
+    .blogDate {
+      position: absolute;
+      bottom: 20px;
+      right: 20px;
+      z-index: 1;
+      background: rgba(255, 255, 255, 0.9);
+      color: #2d3748;
+      padding: 6px 12px;
+      border-radius: 15px;
+      font-size: 12px;
+      font-weight: 500;
+      box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
+    }
+  }
+
+  .blogInfo {
+    padding: 25px;
+    display: flex;
+    flex-grow: 1;
+    flex-direction: column;
+    background: linear-gradient(180deg, #ffffff 0%, #f8f9fa 100%);
+
+    .blogAuthor {
+      display: flex;
+      align-items: center;
+      margin-bottom: 20px;
+      padding-bottom: 15px;
+      border-bottom: 1px solid #edf2f7;
+
+      .authorAvatar {
+        width: 45px;
+        height: 45px;
+        border-radius: 50%;
+        object-fit: cover;
+        margin-right: 12px;
+        border: 2px solid #fff;
+        box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+      }
+
+      span {
+        font-size: 15px;
+        font-weight: 600;
+        color: #2d3748;
+
+        &::after {
+          content: '✍️';
+          margin-left: 6px;
+          font-size: 14px;
+        }
+      }
+    }
+
+    .blogTitle {
+      font-size: 20px;
+      font-weight: 700;
+      color: #1a202c;
+      margin-bottom: 12px;
+      line-height: 1.4;
+      transition: color 0.3s ease;
+    }
+
+    .blogContent {
+      font-size: 15px;
+      line-height: 1.7;
+      color: #4a5568;
+      margin-bottom: 25px;
+      overflow: hidden;
+      display: -webkit-box;
+      -webkit-line-clamp: 3;
+      -webkit-box-orient: vertical;
+      text-align: justify;
+
+      &.expanded {
+        -webkit-line-clamp: unset;
+      }
+    }
+
+    .readMoreButton {
+      margin-top: auto;
+      padding: 12px 24px;
+      border-radius: 25px;
+      background: linear-gradient(135deg, #ce3931 0%, #e65d55 100%);
+      color: #fff;
+      font-size: 14px;
+      font-weight: 600;
+      text-decoration: none;
+      text-align: center;
+      transition: all 0.3s ease;
+      box-shadow: 0 4px 12px rgba(206, 57, 49, 0.2);
+
+      &:hover {
+        background: linear-gradient(135deg, #b02b2b 0%, #ce3931 100%);
+        box-shadow: 0 6px 15px rgba(206, 57, 49, 0.3);
+        transform: translateY(-2px);
+      }
+    }
+  }
+}
+
+.blogsSection {
+  margin: 60px 0;
+  padding: 40px 20px;
+  background: linear-gradient(180deg, #f8f9fa 0%, #ffffff 100%);
+
+  h2 {
+    font-size: 36px;
+    font-weight: 800;
+    color: #1a202c;
+    text-align: center;
+    margin-bottom: 40px;
+    position: relative;
+
+    &::after {
+      content: '';
+      position: absolute;
+      bottom: -12px;
+      left: 50%;
+      transform: translateX(-50%);
+      width: 60px;
+      height: 4px;
+      background: #ce3931;
+      border-radius: 2px;
+    }
+  }
+
+  .blogsGrid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+    gap: 30px;
+    justify-items: center;
+    max-width: 1400px;
+    margin: 0 auto;
+    padding: 20px;
+
+    @media (max-width: 1024px) {
+      grid-template-columns: repeat(2, 1fr);
+    }
+
+    @media (max-width: 768px) {
+      grid-template-columns: repeat(1, 1fr);
+      gap: 25px;
+    }
+  }
+}
